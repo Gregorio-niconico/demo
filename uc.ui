@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>712</width>
-    <height>506</height>
+    <width>715</width>
+    <height>505</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -15,6 +15,14 @@
     <horstretch>222</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>9</pointsize>
+    <weight>75</weight>
+    <bold>true</bold>
+    <stylestrategy>PreferAntialias</stylestrategy>
+   </font>
   </property>
   <property name="windowTitle">
    <string>UC</string>
@@ -31,8 +39,10 @@
    <property name="font">
     <font>
      <family>等线</family>
+     <pointsize>9</pointsize>
      <weight>75</weight>
      <bold>true</bold>
+     <stylestrategy>PreferAntialias</stylestrategy>
     </font>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -47,8 +57,10 @@
       <property name="font">
        <font>
         <family>等线</family>
+        <pointsize>9</pointsize>
         <weight>75</weight>
         <bold>true</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
        </font>
       </property>
       <property name="currentIndex">
@@ -61,18 +73,743 @@
        <attribute name="title">
         <string>北京</string>
        </attribute>
-       <widget class="QLabel" name="label">
+       <widget class="QPushButton" name="frame_analysis_btn">
         <property name="geometry">
          <rect>
-          <x>190</x>
+          <x>10</x>
           <y>190</y>
-          <width>54</width>
-          <height>12</height>
+          <width>91</width>
+          <height>21</height>
          </rect>
         </property>
         <property name="text">
-         <string>TextLabel</string>
+         <string>帧解析</string>
         </property>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>40</y>
+          <width>121</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>等线</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <property name="spacing">
+          <number>7</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="text">
+            <string>起始符:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="frame_head_lineEdit">
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_17">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>130</y>
+          <width>301</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>等线</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_17">
+         <property name="spacing">
+          <number>7</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_15">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="text">
+            <string>参数</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_5">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <item>
+            <property name="text">
+             <string>00过流告警阈值</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>01过流持续告警时间</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>02反流告警阈值</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>03持续反流告警时间</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>04电压告警阈值</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>05服务器地址</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>06APN信息</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>07上报重连次数</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>08 周期上报离散起始时间+结束时间+估长</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>09 终端启停设置</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>10 周期上报频率</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>11 密集上报起始时间</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>12 周期采样间隔</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>20 上报重连等待时间</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>21 密集采集间隔</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>22 秘钥</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_9">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>70</y>
+          <width>171</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>等线</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_9">
+         <property name="spacing">
+          <number>7</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_7">
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="text">
+            <string>加密标识:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_2">
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <item>
+            <property name="text">
+             <string>0不加密</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>1加密</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_6">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>40</y>
+          <width>171</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>等线</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <property name="spacing">
+          <number>7</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_4">
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="text">
+            <string>协议版本号:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="protocol_no_lineEdit">
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_4">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>70</y>
+          <width>121</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>等线</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <property name="spacing">
+          <number>7</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="text">
+            <string>帧长度:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="frame_length_lineEdit">
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_7">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>301</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>等线</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <property name="spacing">
+          <number>1</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_5">
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="text">
+            <string>时间:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="time_year_spinBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="singleStep">
+            <number>1</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="time_month_spinBox">
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="time_day_spinBox">
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="time_hour_spinBox">
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="time_minute_spinBox">
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="time_second_spinBox">
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_8">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>100</y>
+          <width>171</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>等线</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <property name="spacing">
+          <number>7</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_6">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="text">
+            <string>功能码:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <item>
+            <property name="text">
+             <string>01参数设置</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>82周期上报应答</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>03信息查询</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>85补报应答</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>06读取历史数据</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_5">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>100</y>
+          <width>121</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>等线</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <property name="spacing">
+          <number>7</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="text">
+            <string>帧序号:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="frame_no_lineEdit">
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_18">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>160</y>
+          <width>301</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>等线</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_18">
+         <property name="spacing">
+          <number>1</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_16">
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="text">
+            <string>历史数据时间:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="history_year_spinBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+           <property name="singleStep">
+            <number>1</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="history_month_spinBox">
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="history_day_spinBox">
+           <property name="font">
+            <font>
+             <family>等线</family>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+            </font>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </widget>
       <widget class="QWidget" name="tab_2">
@@ -90,20 +827,32 @@
      <x>230</x>
      <y>410</y>
      <width>471</width>
-     <height>80</height>
+     <height>82</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>等线</family>
+     <pointsize>9</pointsize>
      <weight>75</weight>
      <bold>true</bold>
+     <stylestrategy>PreferAntialias</stylestrategy>
     </font>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
-    <property name="topMargin">
-     <number>8</number>
+    <property name="spacing">
+     <number>2</number>
     </property>
+    <property name="topMargin">
+     <number>3</number>
+    </property>
+    <item>
+     <widget class="Line" name="line_7">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
     <item>
      <widget class="QPlainTextEdit" name="frame_text">
       <property name="sizePolicy">
@@ -115,9 +864,17 @@
       <property name="font">
        <font>
         <family>等线</family>
+        <pointsize>9</pointsize>
         <weight>75</weight>
         <bold>true</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
        </font>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="tabStopWidth">
+       <number>13</number>
       </property>
      </widget>
     </item>
@@ -134,8 +891,10 @@
         <property name="font">
          <font>
           <family>等线</family>
+          <pointsize>9</pointsize>
           <weight>75</weight>
           <bold>true</bold>
+          <stylestrategy>PreferAntialias</stylestrategy>
          </font>
         </property>
         <property name="text">
@@ -154,8 +913,10 @@
         <property name="font">
          <font>
           <family>等线</family>
+          <pointsize>9</pointsize>
           <weight>75</weight>
           <bold>true</bold>
+          <stylestrategy>PreferAntialias</stylestrategy>
          </font>
         </property>
         <property name="text">
@@ -173,17 +934,26 @@
      <x>10</x>
      <y>10</y>
      <width>221</width>
-     <height>61</height>
+     <height>71</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>等线</family>
+     <pointsize>9</pointsize>
      <weight>75</weight>
      <bold>true</bold>
+     <stylestrategy>PreferAntialias</stylestrategy>
     </font>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <widget class="Line" name="line">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+    </item>
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_4">
       <property name="spacing">
@@ -203,9 +973,11 @@
         <property name="font">
          <font>
           <family>等线</family>
+          <pointsize>9</pointsize>
           <weight>75</weight>
           <italic>false</italic>
           <bold>true</bold>
+          <stylestrategy>PreferAntialias</stylestrategy>
          </font>
         </property>
         <property name="currentText">
@@ -225,6 +997,13 @@
        </widget>
       </item>
       <item>
+       <widget class="Line" name="line_5">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="open_serial_btn">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -235,8 +1014,10 @@
         <property name="font">
          <font>
           <family>等线</family>
+          <pointsize>9</pointsize>
           <weight>75</weight>
           <bold>true</bold>
+          <stylestrategy>PreferAntialias</stylestrategy>
          </font>
         </property>
         <property name="text">
@@ -247,7 +1028,14 @@
      </layout>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0,0">
+     <widget class="Line" name="line_3">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0,0,0">
       <property name="sizeConstraint">
        <enum>QLayout::SetDefaultConstraint</enum>
       </property>
@@ -268,12 +1056,21 @@
         <property name="font">
          <font>
           <family>等线</family>
+          <pointsize>9</pointsize>
           <weight>75</weight>
           <bold>true</bold>
+          <stylestrategy>PreferAntialias</stylestrategy>
          </font>
         </property>
         <property name="text">
          <string>串口配置</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line_6">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
         </property>
        </widget>
       </item>
@@ -284,6 +1081,15 @@
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <family>等线</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
         </property>
         <property name="toolTip">
          <string>选择</string>
@@ -308,16 +1114,32 @@
       </item>
      </layout>
     </item>
+    <item>
+     <widget class="Line" name="line_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QWidget" name="verticalLayoutWidget_3">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>70</y>
+     <y>80</y>
      <width>221</width>
-     <height>421</height>
+     <height>411</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>9</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+     <stylestrategy>PreferAntialias</stylestrategy>
+    </font>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_5">
     <property name="topMargin">
@@ -328,6 +1150,15 @@
     </property>
     <item>
      <widget class="QTextBrowser" name="mes_log_textbrow">
+      <property name="font">
+       <font>
+        <family>等线</family>
+        <pointsize>9</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+       </font>
+      </property>
       <property name="toolTip">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;选择&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
