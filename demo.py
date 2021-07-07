@@ -1,23 +1,24 @@
 from upper_computer_SW.methods import Aes128Util, crc16_calc, deal_data
+
 dict_up_frame = {
-        'frame_head': [2, 'A568'],
-        'frame_length': [2],    #帧长度，从头到尾
-        'frame_no': [2],
-        'protocol_num': [1, '02'],
-        'manufacturer_num': [1, '1B'],
-        'device_type': [1, '02'],
-        'IMEI': [15],
-        'RSRP': [2],    #参考信号接收功率
-        'SNR': [2],     #信噪比
-        'ECL': [1],     #信号覆盖等级，0、1、2
-        'CSQ': [1],     #信号质量
-        'fuc_code': [1],
-        'encrypted_identity': [1],  #加密标识，0-不加密，1-加密
-        'data_length': [2], #
-        'data': [],
-        'CRC16': [2],
-        'frame_tail': [1, '16']
-    }
+    'frame_head': [2, 'A568'],
+    'frame_length': [2],  # 帧长度，从头到尾
+    'frame_no': [2],
+    'protocol_num': [1, '02'],
+    'manufacturer_num': [1, '1B'],
+    'device_type': [1, '02'],
+    'IMEI': [15],
+    'RSRP': [2],  # 参考信号接收功率
+    'SNR': [2],  # 信噪比
+    'ECL': [1],  # 信号覆盖等级，0、1、2
+    'CSQ': [1],  # 信号质量
+    'fuc_code': [1],
+    'encrypted_identity': [1],  # 加密标识，0-不加密，1-加密
+    'data_length': [2],  #
+    'data': [],
+    'CRC16': [2],
+    'frame_tail': [1, '16']
+}
 
 
 def analysis_frame_head(string):
@@ -33,10 +34,10 @@ def analysis_frame_head(string):
 # 解析帧长度，传入整个帧
 def analysis_frame_length(list_data):
     frame_length = list_data[3] + list_data[2]  # 原帧长度，转成小端
-    list_length = deal_data.get_data_length(len(list_data))
+    list_length = deal_data.int_length_to_hex(len(list_data))
     if len(list_length) < 4:
         temp = 4 - len(list_length)
-        list_length = '0'*temp + list_length
+        list_length = '0' * temp + list_length
     if list_length == frame_length:
         result = '帧长度正确:' + frame_length
     else:
@@ -111,7 +112,7 @@ def analysis_ECL(string):
 
 
 def analysis_CSQ(string):
-    result = 'CSQ:' + str(int('0x'+string, 16))
+    result = 'CSQ:' + str(int('0x' + string, 16))
     print(result)
     return result
 
@@ -150,26 +151,25 @@ def analysis_encrypted_identity(string):
 
 # 数据域
 def analysis_aes_128(string):
-    result = []
-    result.append('数据域: ')
+    result = ['\n']
     data = Aes128Util.decrypt_data(string).upper()
-    # result.append(data)
     result_data_length = data_length(data)
     result.append(result_data_length[0])
-    tag_1 = data[4:6]
-    tag_1_length_string = data[8] + data[9] + data[6] + data[7]
-    tag_1_length = int(tag_1_length_string, 16) # 第一个tag长度
+    tag_1_length_string = deal_data.str_reverse_byte(data[6:10])
+    tag_1_length = int(tag_1_length_string, 16)  # 第一个tag长度
     temp = 10 + tag_1_length * 2
-    tag_1_data = data[10:temp+1]
-
-
+    tag_1_data = data[10:(temp + 1)]
+    tag =data[4:(temp + 1)]
+    result_tag_data = tag_data(tag)
+    for item in result_tag_data:
+        result.append(item)
     return result
 
 
 def analysis_crc16(list_data):
     data = ''
-    temp_crc = list_data[-2]+ list_data[-3]
-    temp = list_data[:-3]   # 取CRC前的全部数据
+    temp_crc = list_data[-2] + list_data[-3]
+    temp = list_data[:-3]  # 取CRC前的全部数据
     for item in temp:
         data += item
     crc = crc16_calc.calc_crc(data).upper()
@@ -193,7 +193,7 @@ def anaylsis_frame_tail(string):
 
 
 def analysis_data(data):
-    list_data = deal_data.deal_data(data)
+    list_data = deal_data.str_to_byte_list(data)
     IMEI = ''
     DF = ''
     frame_head = list_data[0] + list_data[1]
@@ -228,6 +228,7 @@ def analysis_data(data):
     list_result.append(analysis_encrypted_identity(encrypted_identity))
     aes_result = analysis_aes_128(DF)
     for item in aes_result:
+        print(item)
         list_result.append(item)
     list_result.append(analysis_crc16(list_data))
     list_result.append(anaylsis_frame_tail(frame_tail))
@@ -237,89 +238,130 @@ def analysis_data(data):
 
 def data_length(data):
     result = []
-    data_length_hex = data[2] + data[3] + data[0] + data[1]
+    data_length_hex = deal_data.str_reverse_byte(data[0:4])
     data_length_int = int(data_length_hex, 16)  # 数据域长度
-    real_lenth = (len(data) - 4) / 2
+    real_lenth = int((len(data) - 4) / 2)
     if (data_length_int != real_lenth):
         result.append('数据域长度错误！')
     else:
-        result.append("数据域长度为：" + str(real_lenth))  #result集第一个元素为输出值
-    result.append(data_length_int)  #result集第二个元素为数据域长度
+        result.append("数据域长度为：" + str(real_lenth))  # result集第一个元素为输出值
+    result.append(data_length_int)  # result集第二个元素为数据域长度
     return result
 
 
 # tag解析
-def data_tag(data):
-    data_tag_result = []
-    tag_no = data[4:6]
-    tag_1_length_string = data[8] + data[9] + data[6] + data[7]
-    tag_1_length = int(tag_1_length_string, 16) # 第一个tag长度
-    temp = 10 + tag_1_length * 2
-    tag_1_data = data[10:temp+1]
-    # tag_no = data[4:6]
-    # tag_length = data[6] + 
+def tag_data(data):
+    tag_data_result = []
+    tag_no = data[0:2]  # tag号
+    tag_1_length_string = deal_data.str_reverse_byte(data[2:6])
+    tag_1_length = int(tag_1_length_string, 16)  # 第一个tag长度
+    tag_1_end_index = 5 + tag_1_length * 2 # tag_1数据域截止的下标
+    tag_1_data = data[6:(tag_1_end_index + 1)]
     if tag_no == '02':
-        tag = 'Tag02：结果码'
-        
+        result_tag_no = 'Tag02：结果码'
         if tag_1_length != 1:
+            result_tag_1_length = 'tag数据长度错误:' + str(tag_1_length)
+        else:
+            result_tag_1_length = 'tag数据长度:' + str(tag_1_length)
+            temp = str(tag_1_data)
+            result_tag_1_data = TAG_02[temp]
 
-            result.append()
     elif tag_no == '03':
-        tag = 'Tag03:基础信息'
+        result_tag_no = 'Tag03:基础信息'
 
     elif tag_no == '04':
-        tag = 'Tag04:终端参数'
+        result_tag_no = 'Tag04:终端参数'
 
     elif tag_no == '05':
-        tag = 'Tag05:报警数据'
+        result_tag_no = 'Tag05:报警数据'
 
     elif tag_no == '07':
-        tag = 'Tag07:水表实时数据'
+        result_tag_no = 'Tag07:水表实时数据'
 
-    data_tag_result.append(tag)
+    tag_data_result.append(result_tag_no)
+    tag_data_result.append(result_tag_1_length)
+    tag_data_result.append(result_tag_1_data)
+    tag_data_result.append('\n')
+    # print(tag_data_result)
+    return tag_data_result
 
-# 基础信息tag
-TAG_03 = {
-    '00' : ['ICCID', 20]
-    '01' : ['设备类型', 1],
-    '02' : ['水表表号', 7],
-    '03' : ['终端时钟', 6],
-    '04' : ['终端软件版本', 1]
+# 结果码tag
+TAG_02 = {
+    '00': '处理成功',
+    '01': '消息有误',
+    '02': '不支持',
+    '03': '处理失败',
 }
 
 
+# 基础信息tag
+TAG_03 = {
+    '00': ['ICCID', 20],
+    '01': ['设备类型', 1],
+    '02': ['水表表号', 7],
+    '03': ['终端时钟', 6],
+    '04': ['终端软件版本', 1]
+}
+
 # 终端参数tag
 TAG_04 = {
-    '00' : ['过流告警阈值', 4],
-    '01' : ['持续过流告警时间', 1],
-    '02' : ['返流告警阈值', 4],
-    '03' : ['持续反流告警时间', 1],
-    '04' : ['电压告警阈值', 2],
-    '05' : ['服务器地址', 32],
-    '06' : ['APN信息', 32],
-    '07' : ['上报重连次数', 1],
-    '08' : ['周期上报离散起始时间+结束时间+离散估长', 13],
-    '09' : ['终端起停设置', 1],
-    '0A' : ['周期上报频率', 1],
-    '0B' : ['密集上报采样起始时间', 1],
-    '0C' : ['周期采样间隔', 1],
-    '14' : ['上报重连等待时间', 1],
-    '15' : ['密集采样间隔', 1],
-    '16' : ['KEY', 16],
+    '00': ['过流告警阈值', 4],
+    '01': ['持续过流告警时间', 1],
+    '02': ['返流告警阈值', 4],
+    '03': ['持续反流告警时间', 1],
+    '04': ['电压告警阈值', 2],
+    '05': ['服务器地址', 32],
+    '06': ['APN信息', 32],
+    '07': ['上报重连次数', 1],
+    '08': ['周期上报离散起始时间+结束时间+离散估长', 13],
+    '09': ['终端起停设置', 1],
+    '0A': ['周期上报频率', 1],
+    '0B': ['密集上报采样起始时间', 1],
+    '0C': ['周期采样间隔', 1],
+    '14': ['上报重连等待时间', 1],
+    '15': ['密集采样间隔', 1],
+    '16': ['KEY', 16],
 }
 
 
 # 告警数据tag
 TAG_05 = {
-    '00' : ['', ],
-    '01' : ['', ],
-    '02' : ['', ],
-    '03' : ['', ],
-    '' : ['', ],
-    '' : ['', ],
-    '' : ['', ],
+    '00' : ['低电压报警', 1],
+    '01' : ['磁干扰报警', 1],
+    '02' : ['过流报警', 9],
+    '03' : ['反流报警', 9],
+    '04' : ['光扰报警', 1],
+    '05' : ['脉冲报警', 1],
+    '06' : ['机电分离报警', 1],
+}
+
+
+# 水表实时数据tag
+TAG_07 = {
+    '00' : ['当前累计流量', 4],
+    '01' : ['累计正流量', 4],
+    '02' : ['累计逆流量', 4],
+    '03' : ['日最高流量', 2],
+    '04' : ['日最高流量时间', 6],
+    '05' : ['水表采集时间', 6],
+    '06' : ['电池电压', 2],
+}
+
+
+# 水表周期数据
+TAG_08 = {
 
 }
+
+
+# while(True):
+#     DATA = input('数据：')
+#     print("-------------------------------------------------")
+#     analysis_data(DATA)
+#     print("-------------------------------------------------")
+# DATA ='A568E3000000021B02383634383331303534373936343135A7FF1400000E0201C9E0013EFF87DEC41B8E24A90CA244ACB072A6991E61B9551E92C7317BCB09E32F4081D8BA25B2276FFEF72E0482DD7AC2DBEFDC0BA643FC0C6FF92FBF839F183E275ED37BC74656F0F1201B166175F93E275ED37BC74656F0F1201B166175F93E275ED37BC74656F0F1201B166175F93E275ED37BC74656F0F1201B166175F93E275ED37BC74656F0F1201B166175F991A81FE6488CF2F0D9DB4FD83FC90B351CCD9D90CEE185C97516FFCBE415922B5E5A4FF0D0A9352A72D45FCFC9FE0E20564316'
+# DATA_yingda = 'A5 68 33 00 01 00 02 1B 02 38 36 37 37 34 39 30 35 31 37 38 33 31 38 35 AB FF 12 00 00 11 81 01 60 72 36 15 1A F9 0C 6A 16 EE 2A F9 7A 2B 2F B5 A4 16 16'
+# analysis_data(DATA_yingda)
 # while(True):
 #     DATA = input('数据：')
 #     print("-------------------------------------------------")
